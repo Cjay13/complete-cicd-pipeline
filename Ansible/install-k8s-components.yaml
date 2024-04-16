@@ -3,8 +3,8 @@
   become: yes
   tasks:
   - name: Make the file executable
-    file: /tmp/complete-cicd-pipeline/my-scripts/kube-components.sh
+    file: /tmp/My-Scripts/kube-components.sh
     mode: u+x
 
   - name: Run the script
-    script: /tmp/complete-cicd-pipeline/my-scripts/kube-components.sh
+    script: /tmp/My-Scripts/kube-components.sh

@@ -9,5 +9,5 @@
 
   - name: Clone repository
     git:
-      repo: https://github.com/Cjay13/complete-cicd-pipeline.git
+      repo: https://github.com/Cjay13/My-Scripts.git
       dest: /tmp
