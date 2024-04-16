@@ -1,0 +1,10 @@
+- name: Install Docker
+  hosts: all
+  become: yes
+  tasks:
+  - name: Make the file executable
+    file: /tmp/complete-cicd-pipeline/my-scripts/docker.sh
+    mode: u+x
+
+  - name: Run the script
+    script: /tmp/complete-cicd-pipeline/my-scripts/docker.sh

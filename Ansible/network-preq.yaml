@@ -1,0 +1,10 @@
+- name: Configure network prerequisits for the K8s cluster
+  hosts: all
+  become: yes
+  tasks:
+  - name: Make the file executable
+    file: /tmp/complete-cicd-pipeline/my-scripts/kube-network-preq.sh
+    mode: u+x
+
+  - name: Run the script
+    script: /tmp/complete-cicd-pipeline/my-scripts/kube-network-preq.sh
