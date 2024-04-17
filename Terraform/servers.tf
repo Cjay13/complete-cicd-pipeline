@@ -10,6 +10,10 @@ module "ec2_instance-controlplane" {
   vpc_security_group_ids = [module.k8s_cluster_sg.security_group_id]
   subnet_id              = element(module.vpc.private_subnets, 0)
 
+  root_block_device = {
+    volume_size = 10  
+  }
+
   tags = {
     Project = "cicd-complete"
   }
@@ -26,6 +30,10 @@ module "ec2_instance-worker1" {
   monitoring             = true
   vpc_security_group_ids = [module.k8s_cluster_sg.security_group_id]
   subnet_id              = element(module.vpc.private_subnets, 0)
+
+  root_block_device = {
+    volume_size = 10  
+  }
 
   tags = {
     Project = "cicd-complete"
@@ -44,6 +52,10 @@ module "ec2_instance-worker2" {
   vpc_security_group_ids = [module.k8s_cluster_sg.security_group_id]
   subnet_id              = element(module.vpc.private_subnets, 1)
 
+  root_block_device = {
+    volume_size = 10  
+  }
+
   tags = {
     Project = "cicd-complete"
   }
@@ -61,6 +73,10 @@ module "ec2_instance-jumphost" {
   vpc_security_group_ids      = [module.jumphost-sg.security_group_id]
   subnet_id                   = element(module.vpc.public_subnets, 0)
   associate_public_ip_address = true
+
+  root_block_device = {
+    volume_size = 10  
+  }
 
   tags = {
     Project = "cicd-complete"
