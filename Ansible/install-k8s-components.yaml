@@ -2,9 +2,5 @@
   hosts: all
   become: yes
   tasks:
-  - name: Make the file executable
-    file: /tmp/My-Scripts/kube-components.sh
-    mode: u+x
-
   - name: Run the script
-    script: /tmp/My-Scripts/kube-components.sh
+    script: ~/My-Scripts/kube-components.sh
