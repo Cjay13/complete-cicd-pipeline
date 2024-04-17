@@ -50,6 +50,13 @@ module "k8s_cluster_sg" {
 
   ]
 
+  egress_with_cidr_blocks = [
+    {
+      rule        = "all-traffic"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  ]
+
 }
 
 module "jumphost-sg" {
@@ -63,6 +70,13 @@ module "jumphost-sg" {
     {
       rule        = "ssh-tcp"
       cidr_blocks = "0.0.0.0/0"
+    }
+  ]
+
+  egress_with_cidr_blocks = [
+    {
+      rule        = "all-traffic"
+      cidr_blocks = ["0.0.0.0/0"]
     }
   ]
 }
