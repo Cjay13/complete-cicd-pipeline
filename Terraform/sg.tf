@@ -53,16 +53,16 @@ module "k8s_cluster_sg" {
 }
 
 module "jumphost-sg" {
-    source = "terraform-aws-modules/security-group/aws"
+  source = "terraform-aws-modules/security-group/aws"
 
-    name = "jumphost-sg"
-    description = "Security Group for the jump host"
-    vpc_id = module.vpc.vpc_id
+  name        = "jumphost-sg"
+  description = "Security Group for the jump host"
+  vpc_id      = module.vpc.vpc_id
 
-    ingress_cidr_blocks = [
-        {
-            rule = "ssh-tcp"
-            cidr_blocks = "0.0.0.0/0"
-        }
-    ]
+  ingress_with_cidr_blocks = [
+    {
+      rule        = "ssh-tcp"
+      cidr_blocks = "0.0.0.0/0"
+    }
+  ]
 }
