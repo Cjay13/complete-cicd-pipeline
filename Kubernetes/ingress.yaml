@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: SERVICE_NAME-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: INGRESS_HOST
+      http:
+        paths:
+          - path: PATH_NAME
+            pathType: Prefix
+            backend:
+              service:
+                name: SERVICE_NAME
+                port:
+                  number: SERVICE_PORT
