@@ -9,6 +9,7 @@ pipeline {
 
     environment {
         SCANNER_HOME = tool 'sonar-scanner'
+        DOCKER_REPO = "cjherath"
     }
 
     stages {
@@ -54,11 +55,39 @@ pipeline {
             }
         }
         
-        stage('Code Buil') {
+        stage('Code Build') {
             steps {
                 sh "mvn build" 
             }
         }
+
+        stage('Publish to Nexus') {
+            steps {
+                withMaven(globalMavenSettingsConfig: 'maven-global-settings', jdk: 'jdk17', maven: 'maven3', mavenSettingsConfig: '', traceability: true) {
+                    sh "mvn deploy"
+                }
+            }
+        }
+
+        stage('Authenticate to DockerHub') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'DOCKERHUB_ID', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
+                    sh '''
+                        docker login -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_PASSWORD}
+                    '''
+                }
+
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    sh 'chmod +x Jenkins/scripts/build.sh' //grant execute permission
+                    sh 'Jenkins/scripts/build.sh'
+                }
+            }
+        }        
 
     }    
 }
