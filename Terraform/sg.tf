@@ -19,6 +19,12 @@ module "k8s_cluster_sg" {
       cidr_blocks = element(module.vpc.private_subnets_cidr_blocks, 0)
     },
     {
+      from_port   = 8000
+      to_port     = 9500
+      protocol    = "tcp"
+      cidr_blocks = "0.0.0.0/0"
+    },
+    {
       from_port   = 10250
       to_port     = 10250
       protocol    = "tcp"
@@ -52,8 +58,8 @@ module "k8s_cluster_sg" {
 
   egress_with_cidr_blocks = [
     {
-      rule        = "all-traffic"
-      cidr_blocks = ["0.0.0.0/0"]
+      rule        = "all-all"
+      cidr_blocks = "0.0.0.0/0"
     }
   ]
 
@@ -70,13 +76,19 @@ module "jumphost-sg" {
     {
       rule        = "ssh-tcp"
       cidr_blocks = "0.0.0.0/0"
+    },
+    {
+      from_port   = 8000
+      to_port     = 9500
+      protocol    = "tcp"
+      cidr_blocks = "0.0.0.0/0"
     }
   ]
 
   egress_with_cidr_blocks = [
     {
-      rule        = "all-traffic"
-      cidr_blocks = ["0.0.0.0/0"]
+      rule        = "all-all"
+      cidr_blocks = "0.0.0.0/0"
     }
   ]
 }
