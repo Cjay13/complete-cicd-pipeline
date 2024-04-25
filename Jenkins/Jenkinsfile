@@ -86,7 +86,18 @@ pipeline {
                     sh 'Jenkins/Scripts/build.sh'
                 }
             }
-        }        
+        }      
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                withKubeConfig(caCertificate: '', clusterName: 'kubernetes', contextName: '', credentialsId: 'k8s-cred', namespace: 'ecom', restrictKubeConfigAccess: false, serverUrl: 'https://10.0.1.140:6443') {
+                    script {
+                       sh 'chmod +x Jenkins/Scripts/deploy.sh' //grant execute permission
+                        sh 'Jenkins/Scripts/deploy.sh' 
+                    }
+                }
+            }
+        }  
 
     }    
 }

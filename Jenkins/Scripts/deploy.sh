@@ -1,10 +1,9 @@
 #!/bin/bash
-. ${WORKSPACE}/jenkins/scripts/env.sh
+. ${WORKSPACE}/Jenkins/Scripts/env.sh
 IMAGE_TAG="v${BUILD_NUMBER}"
 echo $IMAGE_TAG
 echo $DOCKER_REPO
 
-SERVICEACCT_FILE=${WORKSPACE}/Kubernetes/serviceaccount.yaml
 DEPLOYMENT_FILE=${WORKSPACE}/Kubernetes/deployment.yaml
 SERVICE_FILE=${WORKSPACE}/Kubernetes/service.yaml
 INGRESS_FILE=${WORKSPACE}/Kubernetes/ingress.yaml
@@ -36,9 +35,9 @@ cat ${INGRESS_FILE}
 echo '\n'
 
 
-kubectl --kubeconfig ${KUBE_CONFIG_FILE} apply -f ${DEPLOYMENT_FILE}
-kubectl --kubeconfig ${KUBE_CONFIG_FILE} apply -f ${SERVICE_FILE}
-kubectl --kubeconfig ${KUBE_CONFIG_FILE} apply -f ${INGRESS_FILE}
+kubectl apply -f ${DEPLOYMENT_FILE}
+kubectl apply -f ${SERVICE_FILE}
+kubectl apply -f ${INGRESS_FILE}
 
 
 
