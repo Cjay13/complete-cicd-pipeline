@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.cjay.ecom</groupId>
 	<artifactId>userManagement</artifactId>
-	<version>3</version>
+	<version>4</version>
 	<packaging>war</packaging>
 	<name>userManagement</name>
 	<description>User Management module for an e-commerce site</description>
