@@ -83,7 +83,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'chmod +x Jenkins/scripts/build.sh' //grant execute permission
+                    sh 'chmod +x Jenkins/Scripts/build.sh' //grant execute permission
                     sh 'Jenkins/scripts/build.sh'
                 }
             }
