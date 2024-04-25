@@ -10,4 +10,4 @@ spec:
   - port: SERVICE_PORT
     targetPort: SERVICE_PORT
     protocol: TCP
-  type: ClusterIP
+  type: LoadBalancer
