@@ -2,12 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: SERVICE_NAME
+  namespace: NAMESPACE
 spec:
   selector:
     app: SERVICE_NAME
   ports:
-    - port: SERVICE_PORT
-      targetPort: SERVICE_PORT
-      protocol: TCP
-  type:
-    ClusterIP
+  - port: SERVICE_PORT
+    targetPort: SERVICE_PORT
+    protocol: TCP
+  type: ClusterIP
