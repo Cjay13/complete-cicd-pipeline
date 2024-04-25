@@ -84,7 +84,7 @@ pipeline {
             steps {
                 script {
                     sh 'chmod +x Jenkins/Scripts/build.sh' //grant execute permission
-                    sh 'Jenkins/scripts/build.sh'
+                    sh 'Jenkins/Scripts/build.sh'
                 }
             }
         }        
