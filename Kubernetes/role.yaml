@@ -4,12 +4,12 @@ metadata:
   name: jenkins-role
   namespace: ecom
 rules:
-- apiGroup: ["apps"]
+- apiGroups: ["apps"]
   resources: ["deployments"]
   verbs: ["create", "delete", "update"]
-- apiGroup: [""]
+- apiGroups: [""]
   resources: ["services"]
   verbs: ["create", "delete", "update"]
-- apiGroup: ["networking.k8s.io"]
+- apiGroups: ["networking.k8s.io"]
   resources: ["ingress"]
   verbs: ["create", "delete", "update"]
